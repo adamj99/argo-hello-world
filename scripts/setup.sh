@@ -81,6 +81,7 @@ cluster_setup(){
 install_argo(){
   helm dep update charts/argo-cd/
   helm install argo-cd charts/argo-cd --create-namespace --namespace argocd
+  kubectl apply -f argocd.yml
 }
 
 # Execute the function to check all requirements
