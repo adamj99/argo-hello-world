@@ -1,6 +1,6 @@
 #!/bin/bash
 set -o nounset # Treat unset variables as an error
-
+export K3D_FIX_DNS=1
 #-----------------------------------------------------
 # FUNCTIONS
 #-----------------------------------------------------
@@ -81,7 +81,7 @@ cluster_setup(){
 install_argo(){
   helm dep update charts/argo-cd/
   helm install argo-cd charts/argo-cd --create-namespace --namespace argocd
-  kubectl apply -f argocd.yml
+  kubectl apply -f argocd-applications.yml
 }
 
 # Execute the function to check all requirements
