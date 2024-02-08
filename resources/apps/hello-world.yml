@@ -4,6 +4,7 @@ metadata:
   name: helloweb
   labels:
     app: hello
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -30,6 +31,7 @@ metadata:
   name: helloweb
   labels:
     app: hello
+  namespace: default
 spec:
   selector:
     app: hello
@@ -45,6 +47,7 @@ metadata:
   name: helloweb
   labels:
     app: hello
+  namespace: default
 spec:
   defaultBackend:
     service:
