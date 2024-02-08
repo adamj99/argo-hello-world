@@ -49,8 +49,13 @@ metadata:
     app: hello
   namespace: default
 spec:
-  defaultBackend:
-    service:
-      name: helloweb-backend
-      port:
-        number: 8080
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: helloweb
+            port:
+              number: 80
