@@ -25,9 +25,9 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
-    server: https://kubernetes.default.svc
-  project: default
+    namespace: argocd
+    name: in-cluster
+  project: bootstrap
   source:
     path: resources/bootstrap/
     repoURL: https://github.com/adamj99/argo-hello-world.git
