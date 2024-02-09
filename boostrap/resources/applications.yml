@@ -29,7 +29,7 @@ spec:
     name: in-cluster
   project: workloads
   source:
-    path: resources/workloads
+    path: workloads/applications
     repoURL: https://github.com/adamj99/argo-hello-world.git
     targetRevision: HEAD
   syncPolicy:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: bootstrap-applications
+  name: cluster-bootstrap-applications
 spec:
   generators:
   - matrix:
@@ -10,7 +10,7 @@ spec:
             repoURL: https://github.com/adamj99/argo-hello-world.git
             revision: HEAD
             directories:
-              - path: resources/bootstrap/*
+              - path: workloads/cluster-bootstrap/*
   template:
     metadata:
       name: '{{path.basename}}-{{name}}'

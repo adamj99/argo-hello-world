@@ -1,9 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-  name: root
+  name: argo-cd
   namespace: argocd
 spec:
   destination:
@@ -16,7 +14,7 @@ spec:
     kind: Application
   project: default
   source:
-    path: resources/argo
+    path: bootstrap/argocd
     repoURL: https://github.com/adamj99/argo-hello-world.git
     targetRevision: HEAD
   syncPolicy:
