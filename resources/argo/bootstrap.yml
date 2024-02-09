@@ -31,7 +31,7 @@ spec:
   source:
     path: resources/bootstrap
     repoURL: https://github.com/adamj99/argo-hello-world.git
-    targetRevision: main
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true

@@ -29,9 +29,9 @@ spec:
     server: in-cluster
   project: workloads
   source:
-    path: resources/workloads/
+    path: resources/workloads
     repoURL: https://github.com/adamj99/argo-hello-world.git
-    targetRevision: main
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
