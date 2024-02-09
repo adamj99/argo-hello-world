@@ -1,5 +1,6 @@
 #!/bin/bash
 set -o nounset # Treat unset variables as an error
+# Required to fix an issue with DNS in k3d
 export K3D_FIX_DNS=1
 #-----------------------------------------------------
 # FUNCTIONS
@@ -26,8 +27,6 @@ requirement_check() {
             exit 1
         fi
     done
-
-    cluster_setup
 }
 
 # cluster_setup is a function to create a k3d cluster named "hello-world"
@@ -77,8 +76,14 @@ install_argo(){
     local namespace="argocd"
     helm dep update charts/argo-cd/
     helm install argo-cd charts/argo-cd --create-namespace --namespace "${namespace}"
-    kubectl apply -f argocd-applications.yml
+    #kubectl apply -f argocd-applications.yml
 }
 
 # Execute the function to check all requirements
-requirement_check
+main(){
+    if requirement_check; then
+        cluster_setup
+    fi
+}
+
+main
