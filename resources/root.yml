@@ -16,7 +16,7 @@ spec:
     kind: Application
   project: default
   source:
-    path: resources/apps
+    path: resources/argo
     repoURL: https://github.com/adamj99/argo-hello-world.git
     targetRevision: HEAD
   syncPolicy:
