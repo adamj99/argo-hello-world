@@ -74,8 +74,8 @@ cluster_setup(){
 
 install_argo(){
     local namespace="argocd"
-    helm dep update resources/bootstrap/argocd >> /dev/null 2>&1 
-    helm upgrade --wait -i -n "${namespace}" "${namespace}" resources/bootstrap/argocd --create-namespace
+    helm dep update bootstrap/argocd >> /dev/null 2>&1 
+    helm upgrade --wait -i -n "${namespace}" "${namespace}" bootstrap/argocd --create-namespace
     #kubectl apply -f argocd-applications.yml
 }
 
