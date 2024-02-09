@@ -26,7 +26,7 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: in-cluster
+    name: in-cluster
   project: workloads
   source:
     path: resources/workloads
