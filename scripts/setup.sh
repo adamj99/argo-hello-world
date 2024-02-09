@@ -17,21 +17,16 @@ yes_no() {
 }
 # function to check whether docker is running and k3d is installed
 requirement_check() {
-    # check if docker is running
-    if ! docker info > /dev/null 2>&1; then
-      echo "This script uses docker, and it isn't running - please start docker and try again!"
-      exit 1
-    fi
-    # check if k3d is installed
-    if ! hash k3d 2>/dev/null; then
-    echo >&2 "This script requires k3d but it's not installed. Installation instructions can be found here https://k3d.io/v5.5.1/#quick-start"
-    exit 1
-    fi
-    # check if helm is installed
-    if ! hash helm 2>/dev/null; then
-    echo >&2 "This script requires helm but it's not installed"
-    exit 1
-    fi
+    # Check prerequisites: docker, k3d, helm, and kubectl
+    prerequisites=(docker k3d helm kubectl)
+
+    for app in ${prerequisites[@]}; do
+        if ! hash $app 2>/dev/null; then
+                echo >&2 "This script requires $app but it's not installed. Please install it and try again."
+            exit 1
+        fi
+    done
+
     cluster_setup
 }
 
@@ -79,9 +74,10 @@ cluster_setup(){
 }
 
 install_argo(){
-  helm dep update charts/argo-cd/
-  helm install argo-cd charts/argo-cd --create-namespace --namespace argocd
-  kubectl apply -f argocd-applications.yml
+    local namespace="argocd"
+    helm dep update charts/argo-cd/
+    helm install argo-cd charts/argo-cd --create-namespace --namespace "${namespace}"
+    kubectl apply -f argocd-applications.yml
 }
 
 # Execute the function to check all requirements
