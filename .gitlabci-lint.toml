@@ -1,0 +1,6 @@
+[gitlabci-lint]
+quiet = false
+base-url = "https://gitlab.com"
+project-id = "48894322"
+configs = [ ".gitlab-ci.yml" ]
+token = "$GITLAB_TOKEN"
